@@ -1,0 +1,70 @@
+{
+	"club": "suits/club.png",
+	"diamond": "suits/diamond.png",
+	"heart": "suits/heart.png",
+	"spade": "suits/spade.png",
+	"big": {
+		"black": [
+			"number/big_black_A.png",
+			"number/big_black_2.png",
+			"number/big_black_3.png",
+			"number/big_black_4.png",
+			"number/big_black_5.png",
+			"number/big_black_6.png",
+			"number/big_black_7.png",
+			"number/big_black_8.png",
+			"number/big_black_9.png",
+			"number/big_black_10.png",
+			"number/big_black_J.png",
+			"number/big_black_Q.png",
+			"number/big_black_K.png"
+		],
+		"red": [
+			"number/big_red_A.png",
+			"number/big_red_2.png",
+			"number/big_red_3.png",
+			"number/big_red_4.png",
+			"number/big_red_5.png",
+			"number/big_red_6.png",
+			"number/big_red_7.png",
+			"number/big_red_8.png",
+			"number/big_red_9.png",
+			"number/big_red_10.png",
+			"number/big_red_J.png",
+			"number/big_red_Q.png",
+			"number/big_red_K.png"
+		]
+	},
+	"small": {
+		"black": [
+			"number/small_black_A.png",
+			"number/small_black_2.png",
+			"number/small_black_3.png",
+			"number/small_black_4.png",
+			"number/small_black_5.png",
+			"number/small_black_6.png",
+			"number/small_black_7.png",
+			"number/small_black_8.png",
+			"number/small_black_9.png",
+			"number/small_black_10.png",
+			"number/small_black_J.png",
+			"number/small_black_Q.png",
+			"number/small_black_K.png"
+		],
+		"red": [
+			"number/small_red_A.png",
+			"number/small_red_2.png",
+			"number/small_red_3.png",
+			"number/small_red_4.png",
+			"number/small_red_5.png",
+			"number/small_red_6.png",
+			"number/small_red_7.png",
+			"number/small_red_8.png",
+			"number/small_red_9.png",
+			"number/small_red_10.png",
+			"number/small_red_J.png",
+			"number/small_red_Q.png",
+			"number/small_red_K.png"
+		]
+	}
+}
