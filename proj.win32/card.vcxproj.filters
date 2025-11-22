@@ -10,6 +10,18 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\models">
+      <UniqueIdentifier>{b02ac39d-c78b-494d-ad26-7276b47b66ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\views">
+      <UniqueIdentifier>{4fd55e4f-75d9-44a0-bfbb-62db780591cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\suits">
+      <UniqueIdentifier>{ff582bf0-63fe-46f8-8535-7b39441e48da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\number">
+      <UniqueIdentifier>{85ffd9d6-e2bb-452a-9ee7-b318f0c34091}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -18,8 +30,14 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\Classes\models\CardModel.cpp">
+      <Filter>src\models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\views\CardView.cpp">
+      <Filter>src\views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\views\CardGameScene.cpp">
+      <Filter>src\views</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -29,13 +47,192 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\Classes\models\CardModel.h">
+      <Filter>src\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\views\CardView.h">
+      <Filter>src\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\views\CardGameScene.h">
+      <Filter>src\views</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\card_general.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\suits\club.png">
+      <Filter>resource\suits</Filter>
+    </Image>
+    <Image Include="..\Resources\suits\diamond.png">
+      <Filter>resource\suits</Filter>
+    </Image>
+    <Image Include="..\Resources\suits\heart.png">
+      <Filter>resource\suits</Filter>
+    </Image>
+    <Image Include="..\Resources\suits\spade.png">
+      <Filter>resource\suits</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_2.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_3.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_4.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_5.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_6.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_7.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_8.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_9.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_10.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_A.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_J.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_K.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_black_Q.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_2.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_3.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_4.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_5.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_6.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_7.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_8.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_9.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_10.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_A.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_J.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_K.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\big_red_Q.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_2.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_3.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_4.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_5.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_6.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_7.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_8.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_9.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_10.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_A.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_J.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_K.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_black_Q.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_2.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_3.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_4.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_5.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_6.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_7.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_8.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_9.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_10.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_A.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_J.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_K.png">
+      <Filter>resource\number</Filter>
+    </Image>
+    <Image Include="..\Resources\number\small_red_Q.png">
+      <Filter>resource\number</Filter>
+    </Image>
   </ItemGroup>
 </Project>
