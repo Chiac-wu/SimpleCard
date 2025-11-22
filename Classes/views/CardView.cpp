@@ -1,17 +1,7 @@
 #include "CardView.h"
+#include "configs/loaders/CardResConfigLoader.h"
 
 USING_NS_CC;
-
-CardView::CardView()
-{
-    this->_suitFileNames = new std::string[5]{
-        "suits/club.png",
-        "suits/diamond.png",
-        "suits/heart.png",
-        "suits/spade.png"
-        ""
-    };
-}
 
 CardView* CardView::create()
 {
@@ -28,9 +18,10 @@ CardView* CardView::create()
 
 bool CardView::init()
 {
+    auto &cardResConfig = CardResConfigLoader::loadFromJson("card_res_config.json");
+
     this->CARD_WIDTH = this->getContentSize().width;
     this->CARD_HEIGHT = this->getContentSize().height;
-
     this->_cardModel = new CardModel();
     if (!this->_cardModel)
     {
@@ -41,44 +32,21 @@ bool CardView::init()
     auto faceType = this->_cardModel->getFaceType();
 
     // 处理数字
-    std::string faceFileName = "";
+    std::string *smallFaceFileName;
+    std::string *bigFaceFileName;
     if (suitType == CardSuitType::CST_CLUBS || suitType == CardSuitType::CST_SPADES)
     {
-        faceFileName += "black_";
+        smallFaceFileName = cardResConfig.SMALL_BLACK_NUM_RES;
+        bigFaceFileName = cardResConfig.BIG_BLACK_NUM_RES;
     }
     else if (suitType == CardSuitType::CST_DIAMONDS || suitType == CardSuitType::CST_HEARTS)
     {
-        faceFileName += "red_";
+        smallFaceFileName = cardResConfig.SMALL_RED_NUM_RES;
+        bigFaceFileName = cardResConfig.BIG_RED_NUM_RES;
     }
-
-    if (faceType >= 1 && faceType <= 9)
-    {
-        faceFileName += '0' + faceType + 1;
-    }
-    else
-    {
-        if (faceType == CardFaceType::CFT_ACE)
-        {
-            faceFileName += "A";
-        }
-        else if (faceType == CardFaceType::CFT_JACK)
-        {
-            faceFileName += "J";
-        }
-        else if (faceType == CardFaceType::CFT_QUEEN)
-        {
-            faceFileName += "Q";
-        }
-        else if (faceType == CardFaceType::CFT_KING)
-        {
-            faceFileName += "K";
-        }
-    }
-    faceFileName += ".png";
 
     // 左上小数字
-    std::string smallFaceFileName = "number/small_" + faceFileName;
-    auto smallFaceSprite = Sprite::create(smallFaceFileName.data());
+    auto smallFaceSprite = Sprite::create(smallFaceFileName[faceType]);
     if (!smallFaceSprite)
     {
         return false;
@@ -88,8 +56,7 @@ bool CardView::init()
     this->addChild(smallFaceSprite);
 
     // 右上花色
-    std::string& suitFileName = this->_suitFileNames[this->_cardModel->getSuitType()];
-    auto suitSprite = Sprite::create(suitFileName.data());
+    auto suitSprite = Sprite::create(cardResConfig.SUIT_RES[suitType]);
     if (!suitSprite)
     {
         return false;
@@ -99,14 +66,12 @@ bool CardView::init()
     this->addChild(suitSprite);
 
     // 中间大数字
-    std::string bigFaceFileName = "number/big_" + faceFileName;
-    auto bigFaceSprite = Sprite::create(bigFaceFileName.data());
+    auto bigFaceSprite = Sprite::create(bigFaceFileName[faceType].data());
     if (!bigFaceSprite)
     {
         return false;
     }
     bigFaceSprite->setPosition(CARD_WIDTH / 2, CARD_HEIGHT / 2);
     this->addChild(bigFaceSprite);
-
     return true;
 }

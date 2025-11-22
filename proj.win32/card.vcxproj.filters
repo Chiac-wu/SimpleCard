@@ -22,6 +22,12 @@
     <Filter Include="resource\number">
       <UniqueIdentifier>{85ffd9d6-e2bb-452a-9ee7-b318f0c34091}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\services">
+      <UniqueIdentifier>{8ffd53e5-c6a6-414c-9a6b-88bfe228aa4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\configs">
+      <UniqueIdentifier>{a2b181e1-4e48-4577-88ee-7ff8495ca289}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -39,6 +45,15 @@
     <ClCompile Include="..\Classes\views\CardGameScene.cpp">
       <Filter>src\views</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\models\GameModel.cpp">
+      <Filter>src\models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\services\GameModelService.cpp">
+      <Filter>src\services</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\configs\loaders\CardResConfigLoader.cpp">
+      <Filter>src\configs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -55,6 +70,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\views\CardGameScene.h">
       <Filter>src\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\models\GameModel.h">
+      <Filter>src\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\services\GameModelService.h">
+      <Filter>src\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\configs\models\CardResConfig.h">
+      <Filter>src\configs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\configs\loaders\CardResConfigLoader.h">
+      <Filter>src\configs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -234,5 +261,10 @@
     <Image Include="..\Resources\number\small_red_Q.png">
       <Filter>resource\number</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\card_res_config.json">
+      <Filter>resource</Filter>
+    </None>
   </ItemGroup>
 </Project>

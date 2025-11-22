@@ -151,14 +151,21 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\configs\loaders\CardResConfigLoader.cpp" />
     <ClCompile Include="..\Classes\models\CardModel.cpp" />
+    <ClCompile Include="..\Classes\models\GameModel.cpp" />
+    <ClCompile Include="..\Classes\services\GameModelService.cpp" />
     <ClCompile Include="..\Classes\views\CardGameScene.cpp" />
     <ClCompile Include="..\Classes\views\CardView.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\configs\loaders\CardResConfigLoader.h" />
+    <ClInclude Include="..\Classes\configs\models\CardResConfig.h" />
     <ClInclude Include="..\Classes\models\CardModel.h" />
+    <ClInclude Include="..\Classes\models\GameModel.h" />
+    <ClInclude Include="..\Classes\services\GameModelService.h" />
     <ClInclude Include="..\Classes\views\CardGameScene.h" />
     <ClInclude Include="..\Classes\views\CardView.h" />
     <ClInclude Include="main.h" />
@@ -233,6 +240,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <Image Include="..\Resources\suits\diamond.png" />
     <Image Include="..\Resources\suits\heart.png" />
     <Image Include="..\Resources\suits\spade.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\card_res_config.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

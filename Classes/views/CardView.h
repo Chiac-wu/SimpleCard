@@ -15,9 +15,8 @@ private:
 	int CARD_HEIGHT;
 
 public:
-	CardView();
+	CardView() = default;
 	static CardView* create();
-
 	virtual bool init() override;
 };
 
