@@ -37,6 +37,8 @@ enum CardFaceType
 class CardModel
 {
 private:
+    int _id;
+    void _setId();
     CardSuitType _suitType;
     CardFaceType _faceType;
     Vec2 _position;
@@ -49,6 +51,7 @@ public:
     void setSuitType(CardSuitType type);
     void setFaceType(CardFaceType type);
     void setPosition(const Vec2& pos);
+    int getId() { return _id; }
     CardModel::CardSuitType getSuitType();
     CardModel::CardFaceType getFaceType();
     Vec2 getPostion();

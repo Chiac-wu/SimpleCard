@@ -24,7 +24,7 @@ bool CardView::init()
 
     this->CARD_WIDTH = this->getContentSize().width;
     this->CARD_HEIGHT = this->getContentSize().height;
-    
+
     return _drawCard();
 }
 

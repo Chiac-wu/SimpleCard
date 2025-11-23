@@ -1,19 +1,28 @@
 #include "CardModel.h"
 
+void CardModel::_setId()
+{
+	static int id = 0;
+	this->_id = id++;
+}
+
 CardModel::CardModel()
 {
+	_setId();
 	this->_suitType = CardSuitType::CST_CLUBS;
 	this->_faceType = CardFaceType::CFT_ACE;
 }
 
 CardModel::CardModel(CardSuitType suitType, CardFaceType faceType)
 {
+	_setId();
 	this->_suitType = suitType;
 	this->_faceType = faceType;
 }
 
 CardModel::CardModel(CardSuitType suitType, CardFaceType faceType, Vec2& pos)
 {
+	_setId();
 	this->_suitType = suitType;
 	this->_faceType = faceType;
 	this->_position = pos;

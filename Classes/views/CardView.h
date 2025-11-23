@@ -23,6 +23,8 @@ public:
 	CardView(CardModel& cardModel) { this->_cardModel = &cardModel; };
 	static CardView* create(CardModel& cardModel);
 	virtual bool init() override;
+
+	CardModel& getCardModel() { return *_cardModel; }
 };
 
 #endif
