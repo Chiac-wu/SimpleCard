@@ -8,14 +8,14 @@
 class GameModel
 {
 private:
-	std::vector<CardModel*> _playFieldCards;
-	std::vector<CardModel*> _stackCards;
+	std::map<int, CardModel*> _playFieldCards;
+	std::map<int, CardModel*> _stackCards;
 public:
 	GameModel(): _playFieldCards(), _stackCards() {}
 	void addPlayFieldCards(CardModel& card);
 	void addStackCards(CardModel& card);
-	std::vector<CardModel*> getPlayFieldCards() const { return this->_playFieldCards; }
-	std::vector<CardModel*> getStackCards() const { return this->_stackCards; };
+	std::map<int, CardModel*> getPlayFieldCards() const { return this->_playFieldCards; }
+	std::map<int, CardModel*> getStackCards() const { return this->_stackCards; };
 };
 
 #endif

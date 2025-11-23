@@ -35,7 +35,7 @@ private:
     const GameModel* _gameModel;
     Vec2 stackLeftPos;  // 翻牌区起始位置
     Vec2 stackRightPos; // 手牌区位置
-    Vector<Node*> _allViews;    // 所有牌views
+    std::map<int, Node*> _allViews; // 所有牌views
     Vector<Node*> _playFieldViews;  // 主牌区cardviews
     Vector<Node*> _stackViewsLeft;  // 堆牌区cardviews
     std::stack<Node*> _stackViewsRight;  // 堆牌区右侧堆

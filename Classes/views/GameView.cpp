@@ -42,10 +42,10 @@ void GameView::drawView()
     this->addChild(mainArea);
     for (auto card : _gameModel->getPlayFieldCards())
     {
-        auto cardView = CardView::create(*card);
-        cardView->setPosition(card->getPostion());
+        auto cardView = CardView::create(*card.second);
+        cardView->setPosition(card.second->getPostion());
         mainArea->addChild(cardView);
-        _allViews.pushBack(cardView);
+        _allViews.insert(std::pair<int, Node*>({ cardView->getCardModel().getId(), cardView }));
     }
     this->_playFieldViews = mainArea->getChildren();
 
@@ -55,11 +55,11 @@ void GameView::drawView()
     this->addChild(stackArea);
     for (auto card : _gameModel->getStackCards())
     {
-        auto cardView = CardView::create(*card);
+        auto cardView = CardView::create(*card.second);
         cardView->setPosition(stackLeftPos);
         stackArea->addChild(cardView);
         stackLeftPos.x += 100;
-        _allViews.pushBack(cardView);
+        _allViews.insert(std::pair<int, Node*>({cardView->getCardModel().getId(), cardView}));
     }
     this->_stackViewsLeft = stackArea->getChildren();
     // ∂•≈∆∑≈”“≤‡
@@ -84,7 +84,7 @@ bool GameView::TouchEnded(Touch* touch, Event* unused_event)
 {
     for (auto& node : _allViews)
     {
-        auto card = static_cast<CardView*>(node);
+        auto card = static_cast<CardView*>(node.second);
         auto nodeLocation = card->convertToNodeSpace(touch->getLocation());
         Size cardSize = card->getContentSize();
         Rect rect = Rect(0, 0, cardSize.width, cardSize.height);
