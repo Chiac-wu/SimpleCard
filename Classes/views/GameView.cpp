@@ -25,6 +25,8 @@ bool GameView::init(GameModel& gameModel)
 {
     this->_gameController = GameController::getInstance();
     this->_gameModel = &gameModel;
+    this->stackLeftPos = Vec2(290, 290);
+    this->stackRightPos = Vec2(790, 290);
     if (!Scene::init())
     {
         return false;
@@ -42,9 +44,18 @@ bool GameView::init(GameModel& gameModel)
     }
 
     // ¶ÑÅÆÇø
-    auto heapArea = LayerColor::create(Color4B::GRAY, 1080, 580);
-    heapArea->setPosition(0, 0);
-    this->addChild(heapArea);
+    auto stackArea = LayerColor::create(Color4B::GRAY, 1080, 580);
+    stackArea->setPosition(0, 0);
+    this->addChild(stackArea);
+    for (auto card : _gameModel->getStackCards())
+    {
+        auto cardView = CardView::create(*card);
+        cardView->setPosition(stackLeftPos);
+        stackArea->addChild(cardView);
+        stackLeftPos.x += 100;
+    }
+    // ¶¥ÅÆ·ÅÓÒ²à
+    stackArea->getChildren().back()->setPosition(stackRightPos);
 
     return true;
 }

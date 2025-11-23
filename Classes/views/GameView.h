@@ -19,6 +19,8 @@ public:
 private:
     const GameController* _gameController;
     const GameModel* _gameModel;
+    Vec2 stackLeftPos;  // 翻牌区起始位置
+    Vec2 stackRightPos; // 手牌区位置
 };
 
 #endif // __GAMEVIEW_SCENE_H__

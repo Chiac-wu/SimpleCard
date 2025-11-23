@@ -11,5 +11,12 @@ GameModel& GameModelFromLevelGenerator::generateGameModel(LevelConfig& config)
 		CardModel* card = new CardModel(suit, face, cardConfig->position);
 		gameModel->addPlayFieldCards(*card);
 	}
+	for (auto cardConfig : config.stackCards)
+	{
+		auto suit = static_cast<CardSuitType>(cardConfig->cardSuit);
+		auto face = static_cast<CardFaceType>(cardConfig->cardFace);
+		CardModel* card = new CardModel(suit, face, cardConfig->position);
+		gameModel->addStackCards(*card);
+	}
 	return *gameModel;
 }

@@ -13,6 +13,7 @@ private:
 public:
 	GameModel(): _playFieldCards(), _stackCards() {}
 	void addPlayFieldCards(CardModel& card);
+	void addStackCards(CardModel& card);
 	std::vector<CardModel*> getPlayFieldCards() const { return this->_playFieldCards; }
 	std::vector<CardModel*> getStackCards() const { return this->_stackCards; };
 };

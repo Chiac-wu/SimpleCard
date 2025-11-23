@@ -20,25 +20,31 @@ CardView* CardView::create(CardModel& cardModel)
 
 bool CardView::init()
 {
-    auto& cardResConfig = *GameController::getInstance()->cardResConfig;
+    this->_cardResConfig = GameController::getInstance()->cardResConfig;
 
     this->CARD_WIDTH = this->getContentSize().width;
     this->CARD_HEIGHT = this->getContentSize().height;
+    
+    return _drawCard();
+}
+
+bool CardView::_drawCard()
+{
     auto suitType = this->_cardModel->getSuitType();
     auto faceType = this->_cardModel->getFaceType();
 
     // 处理数字
-    std::string *smallFaceFileName;
-    std::string *bigFaceFileName;
+    std::string* smallFaceFileName;
+    std::string* bigFaceFileName;
     if (suitType == CardSuitType::CST_CLUBS || suitType == CardSuitType::CST_SPADES)
     {
-        smallFaceFileName = cardResConfig.SMALL_BLACK_NUM_RES;
-        bigFaceFileName = cardResConfig.BIG_BLACK_NUM_RES;
+        smallFaceFileName = _cardResConfig->SMALL_BLACK_NUM_RES;
+        bigFaceFileName = _cardResConfig->BIG_BLACK_NUM_RES;
     }
     else if (suitType == CardSuitType::CST_DIAMONDS || suitType == CardSuitType::CST_HEARTS)
     {
-        smallFaceFileName = cardResConfig.SMALL_RED_NUM_RES;
-        bigFaceFileName = cardResConfig.BIG_RED_NUM_RES;
+        smallFaceFileName = _cardResConfig->SMALL_RED_NUM_RES;
+        bigFaceFileName = _cardResConfig->BIG_RED_NUM_RES;
     }
 
     // 左上小数字
@@ -52,7 +58,7 @@ bool CardView::init()
     this->addChild(smallFaceSprite);
 
     // 右上花色
-    auto suitSprite = Sprite::create(cardResConfig.SUIT_RES[suitType]);
+    auto suitSprite = Sprite::create(_cardResConfig->SUIT_RES[suitType]);
     if (!suitSprite)
     {
         return false;
@@ -69,5 +75,4 @@ bool CardView::init()
     }
     bigFaceSprite->setPosition(CARD_WIDTH / 2, CARD_HEIGHT / 2 - 2 * CARD_BORDER);
     this->addChild(bigFaceSprite);
-    return true;
 }

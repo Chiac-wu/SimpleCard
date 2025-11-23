@@ -25,7 +25,7 @@ LevelConfig& LevelConfigLoader::loadLevelConfig(const int &levelId)
 	{
 		int suit = d["Stack"][i]["CardSuit"].GetInt();
 		int face = d["Stack"][i]["CardFace"].GetInt();
-		Vec2 pos(d["Playfield"][i]["Position"]["x"].GetInt(), d["Playfield"][i]["Position"]["y"].GetInt());
+		Vec2 pos(d["Stack"][i]["Position"]["x"].GetInt(), d["Stack"][i]["Position"]["y"].GetInt());
 		CardConfig* card = new CardConfig(suit, face, pos);
 		config->stackCards.emplace_back(card);
 	}
