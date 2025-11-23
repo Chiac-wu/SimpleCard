@@ -18,5 +18,6 @@ GameModel& GameModelFromLevelGenerator::generateGameModel(LevelConfig& config)
 		CardModel* card = new CardModel(suit, face, cardConfig->position);
 		gameModel->addStackCards(*card);
 	}
+	gameModel->initStackCards();
 	return *gameModel;
 }

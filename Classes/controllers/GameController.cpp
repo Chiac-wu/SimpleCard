@@ -34,5 +34,42 @@ void PlayFieldController::init(GameView& gameView)
 
 void PlayFieldController::handleCardClick(int cardId)
 {
-	CCLOG("id=%d", cardId);
+	if (PlayFieldController::isMatchToStack(cardId))
+	{
+		// 更新model数据
+		auto model = GameController::getInstance()->getGameModel();
+		auto cardInMoving = model->removeByCardId(cardId);
+		model->addStackRightCards(*cardInMoving);
+
+		// 调用相应的view执行动画
+		GameController::getInstance()->getGameView()->moveCardToStack(cardId);
+		CCLOG("id=%d", cardId);
+	}
+}
+
+bool PlayFieldController::isMatchToStack(int cardId)
+{
+	auto gameModel = GameController::getInstance()->getGameModel();
+
+	auto& playFieldCards = gameModel->getPlayFieldCards();
+	auto& stackCards = gameModel->getStackCards();
+	auto& stackRightCards = gameModel->getStackRightCards();
+
+	// 点击的是桌面牌
+	auto it = playFieldCards.find(cardId);
+	if (it != playFieldCards.end())
+	{
+		auto target = static_cast<int>(stackRightCards.back()->getFaceType());
+		auto value = static_cast<int>(it->second->getFaceType());
+		if (abs(target - value) == 1)
+		{
+			return true;
+		}
+	}
+	// 点击的是手牌顶
+	if (stackCards.back()->getId() == cardId)
+	{
+		return true;
+	}
+	return false;
 }

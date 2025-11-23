@@ -27,6 +27,11 @@ public:
     */
     Vector<Node*>& getPlayFieldCardViews() { return _playFieldViews; };
 
+    /**
+    * 将 @param cardId 对应的牌移动到 @param des 的位置
+    */
+    void moveCardToStack(int cardId);
+
     bool TouchBegan(Touch* touch, Event* unused_event);
     bool TouchEnded(Touch* touch, Event* unused_event);
 

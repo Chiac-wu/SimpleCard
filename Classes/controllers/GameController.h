@@ -20,6 +20,7 @@ public:
 
 	void startGame(int levelId);
 	GameModel*& getGameModel() { return _gameModel; }
+	GameView*& getGameView() { return _gameView; }
 	
 	static LevelConfig *levelConfig;
 	static CardResConfig *cardResConfig;
@@ -45,6 +46,8 @@ public:
 	* 处理card点击事件
 	*/
 	static void handleCardClick(int cardId);
+
+	static bool isMatchToStack(int cardId);
 };
 
 #endif // !__GAMECONTROLLER_H__

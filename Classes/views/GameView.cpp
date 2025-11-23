@@ -43,9 +43,10 @@ void GameView::drawView()
     for (auto card : _gameModel->getPlayFieldCards())
     {
         auto cardView = CardView::create(*card.second);
-        cardView->setPosition(card.second->getPostion());
-        mainArea->addChild(cardView);
+        cardView->setPosition(Vec2(card.second->getPostion().x, card.second->getPostion().y + 580));
+        this->addChild(cardView);
         _allViews.insert(std::pair<int, Node*>({ cardView->getCardModel().getId(), cardView }));
+        _playFieldViews.pushBack(cardView);
     }
     this->_playFieldViews = mainArea->getChildren();
 
@@ -55,17 +56,23 @@ void GameView::drawView()
     this->addChild(stackArea);
     for (auto card : _gameModel->getStackCards())
     {
-        auto cardView = CardView::create(*card.second);
+        auto cardView = CardView::create(*card);
         cardView->setPosition(stackLeftPos);
-        stackArea->addChild(cardView);
+        this->addChild(cardView);
         stackLeftPos.x += 100;
         _allViews.insert(std::pair<int, Node*>({cardView->getCardModel().getId(), cardView}));
+        _stackViewsLeft.pushBack(cardView);
     }
     this->_stackViewsLeft = stackArea->getChildren();
     // ¶¥ÅÆ·ÅÓÒ²à
-    this->_stackViewsRight.push(_stackViewsLeft.back());
-    _stackViewsLeft.erase(_stackViewsLeft.end() - 1);
-    _stackViewsRight.top()->setPosition(stackRightPos);
+    for (auto card : _gameModel->getStackRightCards())
+    {
+        auto cardView = CardView::create(*card);
+        cardView->setPosition(stackRightPos);
+        this->addChild(cardView);
+        _allViews.insert(std::pair<int, Node*>({ cardView->getCardModel().getId(), cardView }));
+        _stackViewsRight.push(cardView);
+    }
 
     // ´¥ÃþÊÂ¼þ¼àÌýÆ÷
     auto listener = EventListenerTouchOneByOne::create();
@@ -73,6 +80,15 @@ void GameView::drawView()
     listener->onTouchBegan = CC_CALLBACK_2(GameView::TouchBegan, this);
     listener->onTouchEnded = CC_CALLBACK_2(GameView::TouchEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+}
+
+void GameView::moveCardToStack(int cardId)
+{
+    auto node = _allViews.find(cardId)->second;
+    node->setZOrder(_stackViewsRight.top()->getZOrder() + 1);
+    auto moveTo = MoveTo::create(0.6, stackRightPos);
+    auto easeOutIn = EaseElasticOut::create(moveTo, 1.2);
+    node->runAction(easeOutIn);
 }
 
 bool GameView::TouchBegan(Touch* touch, Event* unused_event)
