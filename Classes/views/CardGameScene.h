@@ -26,6 +26,9 @@
 #define __CARDGAME_SCENE_H__
 
 #include "cocos2d.h"
+#include "controllers/GameController.h"
+
+USING_NS_CC;
 
 class CardGame : public cocos2d::Scene
 {
@@ -36,6 +39,11 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(CardGame);
+
+    bool TouchBegan(Touch* touch, Event* unused_event);
+
+private:
+    const GameController* _gameController;
 };
 
 #endif // __CARDGAME_SCENE_H__

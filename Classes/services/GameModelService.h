@@ -3,11 +3,12 @@
 #define __GAMEMODELSERVICE_H__
 
 #include "models/GameModel.h"
+#include "configs/models/LevelConfig.h"
 
 class GameModelFromLevelGenerator
 {
 public:
-	GameModel& generateGameModel();
+	static GameModel& generateGameModel(LevelConfig &config);
 };
 
 #endif // !__GAMEMODELSERVICE_H__

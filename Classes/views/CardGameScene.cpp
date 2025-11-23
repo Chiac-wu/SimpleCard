@@ -43,27 +43,29 @@ static void problemLoading(const char* filename)
 // on "init" you need to initialize your instance
 bool CardGame::init()
 {
-    //////////////////////////////
-    // 1. super init first
+    this->_gameController = GameController::getInstance();
+
     if ( !Scene::init() )
     {
         return false;
     }
 
-    // Ö÷ÅÆÇø
-    auto mainArea = LayerColor::create(Color4B::BLUE, 1080, 1500);
-    mainArea->setPosition(0, 580);
-    this->addChild(mainArea);
+    auto myLabel = Label::createWithTTF(TTFConfig("fonts/Marker Felt.ttf", 120), "start game");
+    myLabel->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
+    this->addChild(myLabel);
 
-    // ¶ÑÅÆÇø
-    auto heapArea = LayerColor::create(Color4B::GRAY, 1080, 580);
-    heapArea->setPosition(0, 0);
-    this->addChild(heapArea);
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->setSwallowTouches(true);
+    listener->onTouchBegan = CC_CALLBACK_2(CardGame::TouchBegan, this);
 
-    auto cardTest = CardView::create();
-    cardTest->init();
-    cardTest->setPosition(300, 300);
-    this->addChild(cardTest);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, myLabel);
 
+    return true;
+}
+
+bool CardGame::TouchBegan(Touch* touch, Event* unused_event)
+{
+    CCLOG("touch began");
+    GameController::getInstance()->startGame(1);
     return true;
 }

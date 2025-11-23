@@ -28,6 +28,12 @@
     <Filter Include="src\configs">
       <UniqueIdentifier>{a2b181e1-4e48-4577-88ee-7ff8495ca289}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resource\levels">
+      <UniqueIdentifier>{fb6ea5dd-305b-42bd-8c70-321bae344d0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\controllers">
+      <UniqueIdentifier>{673bf2f1-d338-4933-9208-f0bae9951e21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,14 +51,23 @@
     <ClCompile Include="..\Classes\views\CardGameScene.cpp">
       <Filter>src\views</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\models\GameModel.cpp">
-      <Filter>src\models</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\services\GameModelService.cpp">
       <Filter>src\services</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\configs\loaders\CardResConfigLoader.cpp">
       <Filter>src\configs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\configs\loaders\LevelConfigLoader.cpp">
+      <Filter>src\configs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\controllers\GameController.cpp">
+      <Filter>src\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\models\GameModel.cpp">
+      <Filter>src\models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\views\GameView.cpp">
+      <Filter>src\views</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +97,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\configs\loaders\CardResConfigLoader.h">
       <Filter>src\configs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\configs\models\LevelConfig.h">
+      <Filter>src\configs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\configs\loaders\LevelConfigLoader.h">
+      <Filter>src\configs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\controllers\GameController.h">
+      <Filter>src\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\views\GameView.h">
+      <Filter>src\views</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +292,9 @@
   <ItemGroup>
     <None Include="..\Resources\card_res_config.json">
       <Filter>resource</Filter>
+    </None>
+    <None Include="..\Resources\levels\level1.json">
+      <Filter>resource\levels</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -1,5 +1,9 @@
 #pragma once
 
+#include "cocos2d.h"
+
+USING_NS_CC;
+
 // 花色类型
 enum CardSuitType
 {
@@ -35,13 +39,17 @@ class CardModel
 private:
     CardSuitType _suitType;
     CardFaceType _faceType;
+    Vec2 _position;
 
 public:
     CardModel();
     CardModel(CardSuitType suitType, CardFaceType faceType);
+    CardModel(CardSuitType suitType, CardFaceType faceType, Vec2& pos);
 
     void setSuitType(CardSuitType type);
     void setFaceType(CardFaceType type);
+    void setPosition(const Vec2& pos);
     CardModel::CardSuitType getSuitType();
     CardModel::CardFaceType getFaceType();
+    Vec2 getPostion();
 };

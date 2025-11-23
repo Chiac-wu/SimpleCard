@@ -12,6 +12,13 @@ CardModel::CardModel(CardSuitType suitType, CardFaceType faceType)
 	this->_faceType = faceType;
 }
 
+CardModel::CardModel(CardSuitType suitType, CardFaceType faceType, Vec2& pos)
+{
+	this->_suitType = suitType;
+	this->_faceType = faceType;
+	this->_position = pos;
+}
+
 void CardModel::setSuitType(CardSuitType type)
 {
 	this->_suitType = type;
@@ -22,6 +29,11 @@ void CardModel::setFaceType(CardFaceType type)
 	this->_faceType = type;
 }
 
+void CardModel::setPosition(const Vec2& pos)
+{
+	this->_position = pos;
+}
+
 CardSuitType CardModel::getSuitType()
 {
 	return this->_suitType;
@@ -30,4 +42,9 @@ CardSuitType CardModel::getSuitType()
 CardFaceType CardModel::getFaceType()
 {
 	return this->_faceType;
+}
+
+Vec2 CardModel::getPostion()
+{
+	return this->_position;
 }

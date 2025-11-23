@@ -1,14 +1,16 @@
 #include "CardView.h"
 #include "configs/loaders/CardResConfigLoader.h"
+#include "controllers/GameController.h"
 
 USING_NS_CC;
 
-CardView* CardView::create()
+CardView* CardView::create(CardModel& cardModel)
 {
     // 重写create，使用卡图创建sprite
-    CardView* cardView = new (std::nothrow) CardView();
+    CardView* cardView = new (std::nothrow) CardView(cardModel);
     if (cardView && cardView->initWithFile("card_general.png"))
     {
+        cardView->init();
         cardView->autorelease();
         return cardView;
     }
@@ -18,16 +20,10 @@ CardView* CardView::create()
 
 bool CardView::init()
 {
-    auto &cardResConfig = CardResConfigLoader::loadFromJson("card_res_config.json");
+    auto& cardResConfig = *GameController::getInstance()->cardResConfig;
 
     this->CARD_WIDTH = this->getContentSize().width;
     this->CARD_HEIGHT = this->getContentSize().height;
-    this->_cardModel = new CardModel();
-    if (!this->_cardModel)
-    {
-        return false;
-    }
-
     auto suitType = this->_cardModel->getSuitType();
     auto faceType = this->_cardModel->getFaceType();
 
@@ -71,7 +67,7 @@ bool CardView::init()
     {
         return false;
     }
-    bigFaceSprite->setPosition(CARD_WIDTH / 2, CARD_HEIGHT / 2);
+    bigFaceSprite->setPosition(CARD_WIDTH / 2, CARD_HEIGHT / 2 - 2 * CARD_BORDER);
     this->addChild(bigFaceSprite);
     return true;
 }
