@@ -35,6 +35,11 @@ public:
     void moveCardToStack(int cardId);
 
     /**
+    * 卡片抖动
+    */
+    void cardShake(int cardId);
+
+    /**
     * 将stack顶牌移动到桌面的 @param info->second 位置
     * @param info->first 原z order
     */

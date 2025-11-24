@@ -36,11 +36,10 @@ void PlayFieldController::init(GameView& gameView)
 
 void PlayFieldController::handleCardClick(int cardId)
 {
+	auto undoManager = GameController::getInstance()->getUndoManager();
+	auto model = GameController::getInstance()->getGameModel();
 	if (PlayFieldController::isMatchToStack(cardId))
 	{
-		auto undoManager = GameController::getInstance()->getUndoManager();
-		auto model = GameController::getInstance()->getGameModel();
-
 		// 记录撤销操作
 		auto pos = GameController::getInstance()->getGameView()->getPositionById(cardId);
 		// 来自堆牌区的移动
@@ -61,6 +60,11 @@ void PlayFieldController::handleCardClick(int cardId)
 		// 调用相应的view执行动画
 		GameController::getInstance()->getGameView()->moveCardToStack(cardId);
 		CCLOG("id=%d", cardId);
+	}
+	// 主牌区但不能移动
+	else if (model->getStackCards().back()->getId() != cardId)
+	{
+		GameController::getInstance()->getGameView()->cardShake(cardId);
 	}
 }
 

@@ -1,5 +1,6 @@
 #include "GameView.h"
 #include "CardView.h"
+#include "utils/Shake.h"
 
 USING_NS_CC;
 
@@ -99,6 +100,13 @@ void GameView::moveCardToStack(int cardId)
     _stackViewsRight.push(node);
 }
 
+void GameView::cardShake(int cardId)
+{
+    auto node = _allViews.find(cardId)->second;  
+    auto shake = CCShake::create(0.2f, 15);
+    node->runAction(shake);
+}
+
 int GameView::touchInCard(Touch* touch)
 {
     for (auto& node : _allViews)
@@ -169,7 +177,7 @@ void GameView::moveStackTopToPlayField(std::pair<int, Vec2>& info)
     // 加入到主牌队列
     _playFieldViews.pushBack(node);
     node->runAction(easeOutIn);
-    node->setGlobalZOrder(info.first);
+    //node->setZOrder(info.first);
 }
 
 void GameView::moveStackTopToStackLeft(std::pair<int, Vec2>& info)
@@ -183,7 +191,7 @@ void GameView::moveStackTopToStackLeft(std::pair<int, Vec2>& info)
     // 加入左侧堆队列
     _stackViewsLeft.pushBack(node);
     node->runAction(easeOutIn);
-    node->setZOrder(info.first);
+    //node->setZOrder(info.first);
 }
 
 std::pair<int, Vec2> GameView::getPositionById(int cardId)
