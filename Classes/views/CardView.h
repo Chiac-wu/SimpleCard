@@ -10,11 +10,12 @@ class CardView : public cocos2d::Sprite
 {
 private:
 	CardModel *_cardModel;
+	// ui×ÊÔ´config
 	CardResConfig *_cardResConfig;
-	std::string *_suitFileNames;
-	const int CARD_BORDER = 15;
-	int CARD_WIDTH;
-	int CARD_HEIGHT;
+	// card±ßÔµ¿í
+	const int _CARD_BORDER = 15;
+	int _CARD_WIDTH;
+	int _CARD_HEIGHT;
 
 	// »æÖÆ
 	bool _drawCard();

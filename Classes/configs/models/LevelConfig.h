@@ -6,9 +6,9 @@
 #include "models/CardModel.h"
 struct CardConfig
 {
-	int cardFace;
-	int cardSuit;
-	Vec2 position;
+	int cardFace;	// ≈∆√Ê
+	int cardSuit;	// ≈∆–Õ
+	Vec2 position;	// Œª÷√
 	CardConfig(int suit, int face, Vec2& pos) : cardSuit(suit), cardFace(face) { position = pos; }
 };
 

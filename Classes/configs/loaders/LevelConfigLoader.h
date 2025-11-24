@@ -7,6 +7,9 @@
 class LevelConfigLoader
 {
 public:
+	/**
+	* ¥”jsonº”‘ÿπÿø®≈‰÷√
+	*/
 	static LevelConfig& loadLevelConfig(const int &levelId);
 };
 

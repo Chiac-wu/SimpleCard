@@ -25,8 +25,8 @@ bool GameView::init()
 {
     this->_gameController = GameController::getInstance();
     this->_gameModel = GameController::getInstance()->getGameModel();
-    this->stackLeftPos = Vec2(290, 290);
-    this->stackRightPos = Vec2(790, 290);
+    this->_stackLeftPos = Vec2(290, 290);
+    this->_stackRightPos = Vec2(790, 290);
     if (!Scene::init())
     {
         return false;
@@ -36,7 +36,7 @@ bool GameView::init()
 
 void GameView::drawView()
 {
-    stackLeftPos.x = 290;
+    _stackLeftPos.x = 290;
     // 主牌区
     auto mainArea = LayerColor::create(Color4B::BLUE, 1080, 1500);
     mainArea->setPosition(0, 580);
@@ -58,9 +58,9 @@ void GameView::drawView()
     for (auto card : _gameModel->getStackCards())
     {
         auto cardView = CardView::create(*card);
-        cardView->setPosition(stackLeftPos);
+        cardView->setPosition(_stackLeftPos);
         this->addChild(cardView);
-        stackLeftPos.x += 100;
+        _stackLeftPos.x += 100;
         _allViews.insert(std::pair<int, Node*>({cardView->getCardModel().getId(), cardView}));
         _stackViewsLeft.pushBack(cardView);
     }
@@ -69,7 +69,7 @@ void GameView::drawView()
     for (auto card : _gameModel->getStackRightCards())
     {
         auto cardView = CardView::create(*card);
-        cardView->setPosition(stackRightPos);
+        cardView->setPosition(_stackRightPos);
         this->addChild(cardView);
         _allViews.insert(std::pair<int, Node*>({ cardView->getCardModel().getId(), cardView }));
         _stackViewsRight.push(cardView);
@@ -93,7 +93,7 @@ void GameView::moveCardToStack(int cardId)
 {
     auto node = _allViews.find(cardId)->second;
     node->setZOrder(_stackViewsRight.top()->getZOrder() + 1);
-    auto moveTo = MoveTo::create(0.6, stackRightPos);
+    auto moveTo = MoveTo::create(0.6, _stackRightPos);
     auto easeOutIn = EaseElasticOut::create(moveTo, 1.2);
     node->runAction(easeOutIn);
     _stackViewsRight.push(node);
@@ -142,6 +142,7 @@ bool GameView::TouchBegan(Touch* touch, Event* unused_event)
 
 bool GameView::TouchEnded(Touch* touch, Event* unused_event)
 {
+    // touch结束在back内
     if (touchInBack(touch))
     {
         onBackTouchCallBack(*this);
@@ -162,11 +163,13 @@ void GameView::moveStackTopToPlayField(std::pair<int, Vec2>& info)
     auto pos = info.second;
     auto moveTo = MoveTo::create(0.6, pos);
     auto easeOutIn = EaseElasticOut::create(moveTo, 1.2);
+    // 从右侧堆顶移除
     auto node = _stackViewsRight.top();
     _stackViewsRight.pop();
+    // 加入到主牌队列
     _playFieldViews.pushBack(node);
-    node->setZOrder(info.first);
     node->runAction(easeOutIn);
+    node->setGlobalZOrder(info.first);
 }
 
 void GameView::moveStackTopToStackLeft(std::pair<int, Vec2>& info)
@@ -174,15 +177,17 @@ void GameView::moveStackTopToStackLeft(std::pair<int, Vec2>& info)
     auto pos = info.second;
     auto moveTo = MoveTo::create(0.6, pos);
     auto easeOutIn = EaseElasticOut::create(moveTo, 1.2);
+    // 从右侧堆顶移除
     auto node = _stackViewsRight.top();
     _stackViewsRight.pop();
+    // 加入左侧堆队列
     _stackViewsLeft.pushBack(node);
-    node->setZOrder(info.first);
     node->runAction(easeOutIn);
+    node->setZOrder(info.first);
 }
 
 std::pair<int, Vec2> GameView::getPositionById(int cardId)
 {
     auto view = this->_allViews.find(cardId)->second;
-    return { view->getZOrder(), view->getPosition()};
+    return { view->getGlobalZOrder(), view->getPosition()};
 }

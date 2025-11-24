@@ -8,6 +8,9 @@
 class GameModelFromLevelGenerator
 {
 public:
+	/**
+	* 由关卡levelConfig生成GameModel
+	*/
 	static GameModel& generateGameModel(LevelConfig &config);
 };
 

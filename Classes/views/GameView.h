@@ -68,8 +68,8 @@ private:
     const GameController* _gameController;
     const GameModel* _gameModel;
     Label* _backLabel;
-    Vec2 stackLeftPos;  // 翻牌区起始位置
-    Vec2 stackRightPos; // 手牌区位置
+    Vec2 _stackLeftPos;  // 翻牌区起始位置
+    Vec2 _stackRightPos; // 手牌区位置
     std::map<int, Node*> _allViews; // 所有牌views
     Vector<Node*> _playFieldViews;  // 主牌区cardviews
     Vector<Node*> _stackViewsLeft;  // 堆牌区cardviews

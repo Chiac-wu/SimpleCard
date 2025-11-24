@@ -50,6 +50,9 @@ public:
 	*/
 	static void handleCardClick(int cardId);
 
+	/**
+	* 判断id为 @param cardId 的牌是否与堆顶匹配
+	*/
 	static bool isMatchToStack(int cardId);
 };
 

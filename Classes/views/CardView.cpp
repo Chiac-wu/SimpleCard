@@ -22,8 +22,8 @@ bool CardView::init()
 {
     this->_cardResConfig = GameController::getInstance()->cardResConfig;
 
-    this->CARD_WIDTH = this->getContentSize().width;
-    this->CARD_HEIGHT = this->getContentSize().height;
+    this->_CARD_WIDTH = this->getContentSize().width;
+    this->_CARD_HEIGHT = this->getContentSize().height;
 
     return _drawCard();
 }
@@ -54,7 +54,7 @@ bool CardView::_drawCard()
         return false;
     }
     smallFaceSprite->setAnchorPoint(Vec2(0, 1));
-    smallFaceSprite->setPosition(CARD_BORDER, CARD_HEIGHT - CARD_BORDER);
+    smallFaceSprite->setPosition(_CARD_BORDER, _CARD_HEIGHT - _CARD_BORDER);
     this->addChild(smallFaceSprite);
 
     // 右上花色
@@ -64,7 +64,7 @@ bool CardView::_drawCard()
         return false;
     }
     suitSprite->setAnchorPoint(Vec2(1, 1));
-    suitSprite->setPosition(CARD_WIDTH - CARD_BORDER, CARD_HEIGHT - CARD_BORDER);
+    suitSprite->setPosition(_CARD_WIDTH - _CARD_BORDER, _CARD_HEIGHT - _CARD_BORDER);
     this->addChild(suitSprite);
 
     // 中间大数字
@@ -73,6 +73,6 @@ bool CardView::_drawCard()
     {
         return false;
     }
-    bigFaceSprite->setPosition(CARD_WIDTH / 2, CARD_HEIGHT / 2 - 2 * CARD_BORDER);
+    bigFaceSprite->setPosition(_CARD_WIDTH / 2, _CARD_HEIGHT / 2 - 2 * _CARD_BORDER);
     this->addChild(bigFaceSprite);
 }

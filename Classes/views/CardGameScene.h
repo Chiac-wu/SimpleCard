@@ -30,6 +30,7 @@
 
 USING_NS_CC;
 
+// 开始游戏界面
 class CardGame : public cocos2d::Scene
 {
 public:

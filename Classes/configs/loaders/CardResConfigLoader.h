@@ -7,6 +7,9 @@
 class CardResConfigLoader
 {
 public:
+	/**
+	* 从json加载卡牌ui资源配置
+	*/
 	static CardResConfig& loadFromJson(const std::string& fileName);
 };
 

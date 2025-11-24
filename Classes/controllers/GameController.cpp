@@ -78,7 +78,7 @@ bool PlayFieldController::isMatchToStack(int cardId)
 	{
 		auto target = static_cast<int>(stackRightCards.back()->getFaceType());
 		auto value = static_cast<int>(it->second->getFaceType());
-		if (abs(target - value) == 1)
+		if (abs(target - value) == 1)	// ∆•≈‰
 		{
 			return true;
 		}
