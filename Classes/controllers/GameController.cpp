@@ -46,12 +46,12 @@ void PlayFieldController::handleCardClick(int cardId)
 		// 来自堆牌区的移动
 		if (model->getStackCards().back()->getId() == cardId)
 		{
-			undoManager->insertUndoLog(2, pos);
+			undoManager->insertUndoLog(2, pos.first, pos.second);
 		}
 		// 来自主牌区
 		else
 		{
-			undoManager->insertUndoLog(1, pos);
+			undoManager->insertUndoLog(1, pos.first, pos.second);
 		}
 
 		// 更新model数据

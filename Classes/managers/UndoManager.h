@@ -18,7 +18,7 @@ public:
 	*  -1: 空
 	* @param pos: 原位置
 	*/
-	void insertUndoLog(int from, Vec2 pos);
+	void insertUndoLog(int from, int zOrder, Vec2 pos);
 
 	/**
 	* 执行一次回退

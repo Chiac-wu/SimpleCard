@@ -14,7 +14,7 @@ public:
 	*	2: 堆牌区
 	*  -1: 空
 	*/
-	using LogType = std::pair<int, Vec2>;
+	using LogType = std::pair<int, std::pair<int, Vec2>>;
 
 	/**
 	* 获取一条回退信息

@@ -1,8 +1,8 @@
 #include "UndoManager.h"
 
-void UndoManager::insertUndoLog(int from, Vec2 pos)
+void UndoManager::insertUndoLog(int from, int zOrder, Vec2 pos)
 {
-	_undoModel.pushUndoLog(UndoModel::LogType({ from, pos }));
+	_undoModel.pushUndoLog(UndoModel::LogType(from, { zOrder, pos }));
 }
 
 void UndoManager::undo(GameView& gameView)

@@ -35,14 +35,16 @@ public:
     void moveCardToStack(int cardId);
 
     /**
-    * 将stack顶牌移动到桌面的 @param pos 位置
+    * 将stack顶牌移动到桌面的 @param info->second 位置
+    * @param info->first 原z order
     */
-    void moveStackTopToPlayField(Vec2& pos);
+    void moveStackTopToPlayField(std::pair<int, Vec2>& info);
 
     /**
-    * 将stack顶牌移动到堆牌区的 @param pos 位置
+    * 将stack顶牌移动到堆牌区的 @param info->second 位置
+    * @param info->first 原z order
     */
-    void moveStackTopToStackLeft(Vec2& pos);
+    void moveStackTopToStackLeft(std::pair<int, Vec2>& info);
 
     /**
     * touch事件是否在card中，是则返回cardId
@@ -55,9 +57,9 @@ public:
     bool touchInBack(Touch* touch);
 
     /**
-    * 根据cardId获取card的当前位置
+    * 根据cardId获取card的当前位置, 包括zOrder和position
     */
-    Vec2 getPositionById(int cardId);
+    std::pair<int, Vec2> getPositionById(int cardId);
 
     bool TouchBegan(Touch* touch, Event* unused_event);
     bool TouchEnded(Touch* touch, Event* unused_event);
