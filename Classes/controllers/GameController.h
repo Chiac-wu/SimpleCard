@@ -6,6 +6,7 @@
 #include "configs/models/LevelConfig.h"
 #include "models/GameModel.h"
 #include "views/GameView.h"
+class UndoManager;
 class GameView;
 
 // µ¥Àýcontroller
@@ -21,6 +22,7 @@ public:
 	void startGame(int levelId);
 	GameModel*& getGameModel() { return _gameModel; }
 	GameView*& getGameView() { return _gameView; }
+	UndoManager*& getUndoManager() { return _undoManager; }
 	
 	static LevelConfig *levelConfig;
 	static CardResConfig *cardResConfig;
@@ -28,6 +30,7 @@ public:
 private:
 	GameView* _gameView = nullptr;
 	GameModel* _gameModel = nullptr;
+	UndoManager* _undoManager = nullptr;
 
 	GameController() = default;
 	GameController(const GameController&) = delete;

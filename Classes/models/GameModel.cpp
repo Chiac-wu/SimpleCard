@@ -39,3 +39,10 @@ CardModel* GameModel::removeByCardId(int cardId)
 		return card;
 	}
 }
+
+CardModel* GameModel::stackRightPop()
+{
+	auto& card = _stackCardRight.back();
+	_stackCardRight.erase(_stackCardRight.end() - 1);
+	return card;
+}

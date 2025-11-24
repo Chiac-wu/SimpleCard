@@ -34,6 +34,9 @@
     <Filter Include="src\controllers">
       <UniqueIdentifier>{673bf2f1-d338-4933-9208-f0bae9951e21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\managers">
+      <UniqueIdentifier>{e3e329bd-6a66-4181-a35b-e821d3c10b31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -68,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\views\GameView.cpp">
       <Filter>src\views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\models\UndoModel.cpp">
+      <Filter>src\models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\managers\UndoManager.cpp">
+      <Filter>src\managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +118,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\views\GameView.h">
       <Filter>src\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\models\UndoModel.h">
+      <Filter>src\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\managers\UndoManager.h">
+      <Filter>src\managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -74,6 +74,12 @@ void GameView::drawView()
         _stackViewsRight.push(cardView);
     }
 
+    // 回退按钮
+    _backLabel = Label::createWithTTF(TTFConfig("fonts/Marker Felt.ttf", 60), "BACK");
+    _backLabel->setTextColor(Color4B::BLACK);
+    _backLabel->setPosition(Vec2(980, 290));
+    this->addChild(_backLabel);
+
     // 触摸事件监听器
     auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(true);
@@ -89,14 +95,10 @@ void GameView::moveCardToStack(int cardId)
     auto moveTo = MoveTo::create(0.6, stackRightPos);
     auto easeOutIn = EaseElasticOut::create(moveTo, 1.2);
     node->runAction(easeOutIn);
+    _stackViewsRight.push(node);
 }
 
-bool GameView::TouchBegan(Touch* touch, Event* unused_event)
-{
-    return true;
-}
-
-bool GameView::TouchEnded(Touch* touch, Event* unused_event)
+int GameView::touchInCard(Touch* touch)
 {
     for (auto& node : _allViews)
     {
@@ -105,11 +107,77 @@ bool GameView::TouchEnded(Touch* touch, Event* unused_event)
         Size cardSize = card->getContentSize();
         Rect rect = Rect(0, 0, cardSize.width, cardSize.height);
         if (rect.containsPoint(nodeLocation)) {
-            onCardTouchCallBack(card->getCardModel().getId());
+            return card->getCardModel().getId();
         }
         else {
             // touch ended outside
         }
     }
+    return -1;
+}
+
+bool GameView::touchInBack(Touch* touch)
+{
+    auto nodeLocation = _backLabel->convertToNodeSpace(touch->getLocation());
+    Size backSize = _backLabel->getContentSize();
+    Rect rect = Rect(0, 0, backSize.width, backSize.height);
+    if (rect.containsPoint(nodeLocation))
+    {
+        return true;
+    }
+    return false;
+}
+
+bool GameView::TouchBegan(Touch* touch, Event* unused_event)
+{
+    if (touchInCard(touch) == -1)
+    {
+        // 是否在back内
+        return touchInBack(touch);
+    }
+    // touch开始在card内
     return true;
+}
+
+bool GameView::TouchEnded(Touch* touch, Event* unused_event)
+{
+    if (touchInBack(touch))
+    {
+        onBackTouchCallBack(*this);
+        return true;
+    }
+
+    auto cardId = touchInCard(touch);
+    // touch结束在card内
+    if (cardId != -1)
+    {
+        onCardTouchCallBack(cardId);
+    }
+    return true;
+}
+
+void GameView::moveStackTopToPlayField(Vec2& pos)
+{
+    auto moveTo = MoveTo::create(0.6, pos);
+    auto easeOutIn = EaseElasticOut::create(moveTo, 1.2);
+    auto node = _stackViewsRight.top();
+    _stackViewsRight.pop();
+    _playFieldViews.pushBack(node);
+    node->runAction(easeOutIn);
+}
+
+void GameView::moveStackTopToStackLeft(Vec2& pos)
+{
+    auto moveTo = MoveTo::create(0.6, pos);
+    auto easeOutIn = EaseElasticOut::create(moveTo, 1.2);
+    auto node = _stackViewsRight.top();
+    _stackViewsRight.pop();
+    _stackViewsLeft.pushBack(node);
+    node->runAction(easeOutIn);
+}
+
+Vec2 GameView::getPositionById(int cardId)
+{
+    auto view = this->_allViews.find(cardId)->second;
+    return view->getPosition();
 }

@@ -2,6 +2,7 @@
 #include "configs/loaders/LevelConfigLoader.h"
 #include "configs/loaders/CardResConfigLoader.h"
 #include "services/GameModelService.h"
+#include "managers/UndoManager.h"
 #include "cocos2d.h"
 
 USING_NS_CC;
@@ -20,6 +21,7 @@ void GameController::startGame(int levelId)
 
 	// 初始化子控制器
 	PlayFieldController::init(*_gameView);
+	_undoManager = UndoManager::init(*_gameView);
 
 	// 创建gameView
 	_gameView->drawView();
@@ -36,8 +38,23 @@ void PlayFieldController::handleCardClick(int cardId)
 {
 	if (PlayFieldController::isMatchToStack(cardId))
 	{
-		// 更新model数据
+		auto undoManager = GameController::getInstance()->getUndoManager();
 		auto model = GameController::getInstance()->getGameModel();
+
+		// 记录撤销操作
+		auto pos = GameController::getInstance()->getGameView()->getPositionById(cardId);
+		// 来自堆牌区的移动
+		if (model->getStackCards().back()->getId() == cardId)
+		{
+			undoManager->insertUndoLog(2, pos);
+		}
+		// 来自主牌区
+		else
+		{
+			undoManager->insertUndoLog(1, pos);
+		}
+
+		// 更新model数据
 		auto cardInMoving = model->removeByCardId(cardId);
 		model->addStackRightCards(*cardInMoving);
 

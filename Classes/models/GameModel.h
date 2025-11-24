@@ -27,6 +27,11 @@ public:
 	CardModel* removeByCardId(int cardId);
 
 	/**
+	* 手牌右侧堆栈pop并返回
+	*/
+	CardModel* stackRightPop();
+
+	/**
 	* 整理堆牌，将顶牌放入右侧stack
 	*/
 	void initStackCards();
